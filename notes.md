@@ -17,6 +17,9 @@
 - CODEOWNERS
 - LICENCE
 - Dockerfile
+- src/admin/app.tsx for å skjule fra admin menyen
+  - Media Library
+  - Marketplace
 
 ## Endret
 
