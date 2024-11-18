@@ -49,8 +49,8 @@ spec:
               - name: datastream
         diskAutoresize: true
   ingresses:
-    - "https://strapipostgres.ansatt.nav.no"
-    - "https://strapipostgres.intern.nav.no"
+    - "https://strapi.ansatt.nav.no"
+    - "https://strapi.intern.nav.no"
   resources:
     requests:
       cpu: "100m"
