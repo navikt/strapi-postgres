@@ -20,4 +20,9 @@
 
 ## Endret
 
--
+- config admin.ts
+`flags: {
+nps: env.bool('FLAG_NPS', false),
+promoteEE: env.bool('FLAG_PROMOTE_EE', false),
+},`
+- yarn remove @strapi/plugin-cloud
