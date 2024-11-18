@@ -18,7 +18,7 @@ export default ({ env }) => {
           ca: env('DATABASE_SSL_CA', undefined),
           capath: env('DATABASE_SSL_CAPATH', '/var/run/secrets/nais.io/sqlcertificate'),
           cipher: env('DATABASE_SSL_CIPHER', undefined),
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
+          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false),
         },
       },
       pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
