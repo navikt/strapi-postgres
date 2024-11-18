@@ -37,7 +37,7 @@ export default ({ env }) => {
           ca: fs.readFileSync(`/var/run/secrets/nais.io/sqlcertificate/root-cert.pem`).toString(),
           capath: env('DATABASE_SSL_CAPATH', '/var/run/secrets/nais.io/sqlcertificate'),
           cipher: env('DATABASE_SSL_CIPHER', undefined),
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
+          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false),
         },
         schema: env('DATABASE_SCHEMA', 'public'),
       },
