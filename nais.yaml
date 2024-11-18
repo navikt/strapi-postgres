@@ -1,0 +1,62 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: strapi-postgres
+  namespace: team-researchops
+  labels:
+    team: team-researchops
+spec:
+  image: {{ image }}
+  env:
+    - name: "DATABASE_CLIENT"
+      value: "postgres"
+    - name: "DATABASE_URL"
+      value: "$(NAIS_DATABASE_STRAPI_POSTGRES_STRAPI_POSTGRES_URL)"
+    - name: "DATABASE_SSL"
+      value: "true"
+    - name: "PORT"
+      value: "1337"
+    - name: "debug"
+      value: "true"
+    - name: "JWT_SECRET"
+      value: "tobemodified"
+    - name: "ADMIN_JWT_SECRET"
+      value: "tobemodified"
+    - name: "APP_KEYS"
+      value: "toBeModified1,toBeModified2"
+    - name: "TRANSFER_TOKEN_SALT"
+      value: "tobemodified"
+    - name: "API_TOKEN_SALT"
+      value: "tobemodified"
+  gcp:
+    sqlInstances:
+      - type: POSTGRES_14
+        tier: db-f1-micro
+        flags:
+          - name: cloudsql.logical_decoding
+            value: "on"
+        databases:
+          - name: strapi-postgres
+            users:
+              - name: datastream
+        diskAutoresize: true
+  ingresses:
+    - "https://strapipostgres.ansatt.nav.no"
+    - "https://strapipostgres.intern.nav.no"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      memory: "512Mi"
+  liveness:
+    path: "/admin"
+    port: 1337
+  readiness:
+    path: "/admin"
+    port: 1337
+  replicas:
+    cpuThresholdPercentage: 50
+    max: 2
+    min: 1
+  port: 1337
