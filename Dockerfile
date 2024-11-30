@@ -12,6 +12,8 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn global add node-gyp
 RUN yarn config set network-timeout 600000 -g && yarn install --production --force --ignore-engines
+RUN yarn audit --fix --ignore-engines || true
+RUN yarn upgrade --force --ignore-engines
 ENV PATH=/app/node_modules/.bin:$PATH
 
 COPY . .
