@@ -25,6 +25,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
+      - name: 'Audit and fix vulnerabilities'
+        run: 'yarn audit --fix --ignore-engines || true'
+
+      - name: 'Upgrade dependencies'
+        run: 'yarn upgrade --force --ignore-engines'
+
       - name: 'Build application'
         run: 'yarn build'
 
