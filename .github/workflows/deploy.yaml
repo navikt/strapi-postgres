@@ -14,7 +14,6 @@ jobs:
       id-token: write
     steps:
       - uses: 'actions/checkout@v4'
-
       - name: 'Build and push'
         uses: nais/docker-build-push@v0
         id: docker-build-push
