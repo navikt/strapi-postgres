@@ -14,25 +14,6 @@ jobs:
       id-token: write
     steps:
       - uses: 'actions/checkout@v4'
-      - uses: 'actions/setup-node@v3'
-        with:
-          node-version: 20
-          registry-url: 'https://npm.pkg.github.com'
-          cache: 'yarn'
-
-      - name: 'Install dependencies'
-        run: 'yarn install'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-
-      - name: 'Audit and fix vulnerabilities'
-        run: 'yarn audit --fix --ignore-engines || true'
-
-      - name: 'Upgrade dependencies'
-        run: 'yarn upgrade --force --ignore-engines'
-
-      - name: 'Build application'
-        run: 'yarn build'
 
       - name: 'Build and push'
         uses: nais/docker-build-push@v0
